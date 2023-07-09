@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  hapi:
+    image: "hapiproject/hapi:latest"
+    container_name: hapi
+    ports:
+      - "8090:8080"
+    volumes:
+      - ./hapi-config:/custom/config/hapi
+    environment:
+      SPRING_CONFIG_LOCATION: 'file:///custom/config/hapi/application.yaml'
+    networks:
+            - openhie
+
+networks:
+    openhie:
+        name: openhie.net
+        driver: bridge
+
