@@ -3,7 +3,7 @@ package zw.gov.mohcc.openhie.prototype.invoker.util;
 public class FhirConstants {
 
     public static final String FHIR2_MODULE_ID = "fhir2";
-    public static final String OPENMRS_FHIR_SERVER_NAME = "OpenMRS FHIR Server";
+    public static final String IMPILO_FHIR_SERVER_NAME = "IMPILO FHIR Server";
     public static final String HL7_FHIR_CODE_SYSTEM_PREFIX = "http://terminology.hl7.org/CodeSystem";
     public static final String HL7_FHIR_CODE_SYSTEM_PREFIX_R3 = "http://hl7.org/fhir";
     public static final String FHIR_TERMINOLOGY_DATA_OPERATION = "http://terminology.hl7.org/CodeSystemv3-DataOperation";
@@ -25,27 +25,27 @@ public class FhirConstants {
     public static final String OBSERVATION_REFERENCE_ABSOLUTE = "absolute";
     public static final String OBSERVATION_CATEGORY_VALUE_SET_URI = "http://terminology.hl7.org/CodeSystem/observation-category";
     public static final String ENCOUNTER_CLASS_VALUE_SET_URI = "http://terminology.hl7.org/CodeSystem/v3-ActCode";
-    public static final String OPENMRS_FHIR_PREFIX = "http://fhir.openmrs.org";
-    public static final String OPENMRS_CODE_SYSTEM_PREFIX = "http://fhir.openmrs.org/code-system";
-    public static final String ENCOUNTER_TYPE_SYSTEM_URI = "http://fhir.openmrs.org/code-system/encounter-type";
-    public static final String VISIT_TYPE_SYSTEM_URI = "http://fhir.openmrs.org/code-system/visit-type";
-    public static final String OPENMRS_FHIR_EXT_PREFIX = "http://fhir.openmrs.org/ext";
-    public static final String OPENMRS_FHIR_EXT_OBS_LOCATION_VALUE = "http://fhir.openmrs.org/ext/obs-location-value";
-    public static final String OPENMRS_FHIR_EXT_NAME = "http://fhir.openmrs.org/ext/name";
-    public static final String OPENMRS_FHIR_EXT_GROUP_DESCRIPTION = "http://fhir.openmrs.org/ext/group/description";
-    public static final String OPENMRS_FHIR_EXT_ADDRESS = "http://fhir.openmrs.org/ext/address";
-    public static final String OPENMRS_FHIR_EXT_NON_CODED_CONDITION = "http://fhir.openmrs.org/ext/non-coded-condition";
-    public static final String OPENMRS_FHIR_EXT_MEDICINE = "http://fhir.openmrs.org/ext/medicine";
-    public static final String OPENMRS_FHIR_EXT_TASK_IDENTIFIER = "http://fhir.openmrs.org/ext/task/identifier";
-    public static final String OPENMRS_FHIR_EXT_USER_IDENTIFIER = "http://fhir.openmrs.org/ext/user/identifier";
-    public static final String OPENMRS_FHIR_EXT_PROVIDER_IDENTIFIER = "http://fhir.openmrs.org/ext/provider/identifier";
-    public static final String OPENMRS_FHIR_EXT_LOCATION_TAG = "http://fhir.openmrs.org/ext/location-tag";
-    public static final String OPENMRS_FHIR_EXT_VS_INTERPRETATION = "http://fhir.openmrs.org/ext/obs/interpretations";
-    public static final String OPENMRS_FHIR_EXT_PATIENT_IDENTIFIER_LOCATION = "http://fhir.openmrs.org/ext/patient/identifier#location";
-    public static final String OPENMRS_FHIR_EXT_ENCOUNTER_TAG = "http://fhir.openmrs.org/ext/encounter-tag";
-    public static final String OPENMRS_FHIR_EXT_OBSERVATION_REFERENCE_RANGE = "http://fhir.openmrs.org/ext/obs/reference-range";
-    public static final String OPENMRS_FHIR_DEFAULT_PAGE_SIZE = "fhir2.paging.default";
-    public static final String OPENMRS_FHIR_MAXIMUM_PAGE_SIZE = "fhir2.paging.maximum";
+    public static final String IMPILO_FHIR_PREFIX = "http://fhir.impilo.mohcc.gov.zw";
+    public static final String IMPILO_CODE_SYSTEM_PREFIX = "http://fhir.impilo.mohcc.gov.zw/code-system";
+    public static final String ENCOUNTER_TYPE_SYSTEM_URI = "http://fhir.impilo.mohcc.gov.zw/code-system/encounter-type";
+    public static final String VISIT_TYPE_SYSTEM_URI = "http://fhir.impilo.mohcc.gov.zw/code-system/visit-type";
+    public static final String IMPILO_FHIR_EXT_PREFIX = "http://fhir.impilo.mohcc.gov.zw/ext";
+    public static final String IMPILO_FHIR_EXT_OBS_LOCATION_VALUE = "http://fhir.impilo.mohcc.gov.zw/ext/obs-location-value";
+    public static final String IMPILO_FHIR_EXT_NAME = "http://fhir.impilo.mohcc.gov.zw/ext/name";
+    public static final String IMPILO_FHIR_EXT_GROUP_DESCRIPTION = "http://fhir.impilo.mohcc.gov.zw/ext/group/description";
+    public static final String IMPILO_FHIR_EXT_ADDRESS = "http://fhir.impilo.mohcc.gov.zw/ext/address";
+    public static final String IMPILO_FHIR_EXT_NON_CODED_CONDITION = "http://fhir.impilo.mohcc.gov.zw/ext/non-coded-condition";
+    public static final String IMPILO_FHIR_EXT_MEDICINE = "http://fhir.impilo.mohcc.gov.zw/ext/medicine";
+    public static final String IMPILO_FHIR_EXT_TASK_IDENTIFIER = "http://fhir.impilo.mohcc.gov.zw/ext/task/identifier";
+    public static final String IMPILO_FHIR_EXT_USER_IDENTIFIER = "http://fhir.impilo.mohcc.gov.zw/ext/user/identifier";
+    public static final String IMPILO_FHIR_EXT_PROVIDER_IDENTIFIER = "http://fhir.impilo.mohcc.gov.zw/ext/provider/identifier";
+    public static final String IMPILO_FHIR_EXT_LOCATION_TAG = "http://fhir.impilo.mohcc.gov.zw/ext/location-tag";
+    public static final String IMPILO_FHIR_EXT_VS_INTERPRETATION = "http://fhir.impilo.mohcc.gov.zw/ext/obs/interpretations";
+    public static final String IMPILO_FHIR_EXT_PATIENT_IDENTIFIER_LOCATION = "http://fhir.impilo.mohcc.gov.zw/ext/patient/identifier#location";
+    public static final String IMPILO_FHIR_EXT_ENCOUNTER_TAG = "http://fhir.impilo.mohcc.gov.zw/ext/encounter-tag";
+    public static final String IMPILO_FHIR_EXT_OBSERVATION_REFERENCE_RANGE = "http://fhir.impilo.mohcc.gov.zw/ext/obs/reference-range";
+    public static final String IMPILO_FHIR_DEFAULT_PAGE_SIZE = "fhir2.paging.default";
+    public static final String IMPILO_FHIR_MAXIMUM_PAGE_SIZE = "fhir2.paging.maximum";
     public static final String ALLERGY_INTOLERANCE = "AllergyIntolerance";
     public static final String CONDITION = "Condition";
     public static final String DIAGNOSTIC_REPORT = "DiagnosticReport";
@@ -112,7 +112,7 @@ public class FhirConstants {
     public static final String TAG_SEARCH_HANDLER = "tag.search.handler";
     public static final String GROUP_MEMBERS_SEARCH_HANDLER = "group.members.search.handler";
     public static final String HAPI_NARRATIVES_PROPERTY_FILE = "classpath:ca/uhn/fhir/narrative/narratives.properties";
-    public static final String OPENMRS_NARRATIVES_PROPERTY_FILE = "classpath:org/openmrs/module/fhir2/narratives.properties";
+    public static final String IMPILO_NARRATIVES_PROPERTY_FILE = "classpath:org/IMPILO/module/fhir2/narratives.properties";
     public static final String NARRATIVES_OVERRIDE_PROPERTY_FILE = "fhir2.narrativesOverridePropertyFile";
     public static final String ALLERGEN_SEARCH_HANDLER = "allergen.search.handler";
     public static final String SEVERITY_SEARCH_HANDLER = "severity.search.handler";
@@ -159,7 +159,7 @@ public class FhirConstants {
     public static final String UCUM_SYSTEM_URI = "http://unitsofmeasure.org";
 
     //Custom
-    public final static String IMPILO_SYSTEM = "urn:impilo:uid";
+    public static final String IMPILO_SYSTEM = "urn:impilo:uid";
 
     private FhirConstants() {
 
