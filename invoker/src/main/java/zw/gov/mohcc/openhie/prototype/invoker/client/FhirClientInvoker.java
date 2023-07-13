@@ -64,6 +64,8 @@ public class FhirClientInvoker {
     }
 
 
+
+
     private static IGenericClient getClient() {
         FhirContext ctx = FhirContext.forR4();
         return ctx.newRestfulGenericClient(SERVER_BASE);

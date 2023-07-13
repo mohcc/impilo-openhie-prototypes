@@ -1,8 +1,22 @@
 version: '3.7'
 services:
-  hapi:
+  hapi_postgres:
+    image: postgres:14.1-alpine
+    container_name: hapi_postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=fhirdb
+    ports:
+      - '5433:5432'
+    volumes:
+      - hapi_db_vol:/var/lib/postgresql/data
+    networks:
+      - openhie
+
+  hapi_server:
     image: "hapiproject/hapi:latest"
-    container_name: hapi
+    container_name: hapi_server
     ports:
       - "8090:8080"
     volumes:
@@ -11,6 +25,13 @@ services:
       SPRING_CONFIG_LOCATION: 'file:///custom/config/hapi/application.yaml'
     networks:
             - openhie
+    depends_on:
+      - hapi_postgres
+
+volumes:
+  hapi_db_vol:
+    name: hapi_db_vol
+    driver: local
 
 networks:
     openhie:
