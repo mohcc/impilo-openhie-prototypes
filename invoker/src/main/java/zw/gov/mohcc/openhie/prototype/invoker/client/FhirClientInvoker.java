@@ -18,7 +18,7 @@ public class FhirClientInvoker {
 
     private static final Log LOG = LogFactory.getLog(FhirClientInvoker.class);
 
-    public static final String SERVER_BASE = "http://localhost:8090/fhir";
+    public static final String SERVER_BASE = "http://localhost:5001/myfhir";
 
     public static void main(String[] args) {
         IGenericClient client = getClient();
