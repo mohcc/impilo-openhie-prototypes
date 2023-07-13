@@ -17,7 +17,7 @@ public class FhirClientInvoker {
 
     private static final Log LOG = LogFactory.getLog(FhirClientInvoker.class);
 
-    public static final String SERVER_BASE = "http://localhost:5001/myfhir";
+    public static final String SERVER_BASE = "http://localhost:8090/fhir";
 
     public static void main(String[] args) {
         IGenericClient client = getClient();
@@ -26,7 +26,7 @@ public class FhirClientInvoker {
     }
 
 
-    public static Task createTask(IGenericClient client) {
+    public static void createTask(IGenericClient client) {
 
         String orderUUid = UUID.randomUUID().toString();
         String patientUuid = UUID.randomUUID().toString();
@@ -57,9 +57,16 @@ public class FhirClientInvoker {
         task.setEncounter(encounterRef);
         task.setLocation(locationRef);
 
-        client.create().resource(task).execute();
+        Bundle transactionBundle = new Bundle();
+        transactionBundle.setType(Bundle.BundleType.TRANSACTION);
+        Bundle.BundleEntryComponent component = transactionBundle.addEntry();
+        component.setResource(task);
+        component.getRequest().setUrl(task.fhirType() + "/" + task.getIdElement().getIdPart())
+                    .setMethod(Bundle.HTTPVerb.PUT);
+        client.transaction().withBundle( transactionBundle).execute();
 
-        return task;
+
+
     }
 
 
