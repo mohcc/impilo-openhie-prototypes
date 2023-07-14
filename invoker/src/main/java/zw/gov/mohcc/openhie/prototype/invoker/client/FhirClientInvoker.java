@@ -47,6 +47,9 @@ public class FhirClientInvoker {
         Reference locationRef = newReference(facilityUuid, FhirConstants.LOCATION);
 
 
+
+
+
         Task task = new Task();
         task.setId(orderUUid);
         task.setStatus(Task.TaskStatus.REQUESTED);
@@ -61,7 +64,7 @@ public class FhirClientInvoker {
         transactionBundle.setType(Bundle.BundleType.TRANSACTION);
         Bundle.BundleEntryComponent component = transactionBundle.addEntry();
         component.setResource(task);
-        component.getRequest().setUrl(task.fhirType() + "/" + task.getIdElement().getIdPart())
+        component.getRequest().setUrl(getRequestUrl(task))
                     .setMethod(Bundle.HTTPVerb.PUT);
         client.transaction().withBundle( transactionBundle).execute();
 
@@ -69,6 +72,10 @@ public class FhirClientInvoker {
 
     }
 
+
+    private static String getRequestUrl(Resource resource){
+        return resource.fhirType() + "/" + resource.getIdElement().getIdPart();
+    }
 
 
 
