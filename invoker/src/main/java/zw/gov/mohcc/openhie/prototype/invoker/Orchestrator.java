@@ -37,13 +37,14 @@ import zw.gov.mohcc.openhie.fhir.api.translator.TaskTranslator;
 public class Orchestrator {
 
     public static final String HAPI_FHIR_URL = "http://localhost:8090/fhir";
-    public static final String OPENHIM_FHIR_URL = "";
+    public static final String OPENHIM_FHIR_URL = "http://localhost:5001/fhir/";
 
     private static final List<Facility> FACILITIES = getImpiloFacilities();
     private static final List<Laboratory> LABORATORIES = getImpiloLaboraties();
 
     public static void main(String[] args) {
-        IGenericClient client = getClient(OPENHIM_FHIR_URL);
+        boolean direct = false;
+        IGenericClient client = getClient(direct ? HAPI_FHIR_URL : OPENHIM_FHIR_URL);
         zw.gov.mohcc.mrs.commons.data.reception.Person impiloPerson = getImpiloPerson();
 
         Laboratory laboratory = getImpiloLaboratory();
@@ -54,21 +55,19 @@ public class Orchestrator {
         LaboratoryRequestOrder laboratoryRequestOrder = getLaboratoryRequestOrder(laboratoryInvestigation, laboratory, facility);
 
         List<Resource> resources = new ArrayList<>();
-        
-        Location fhirFacilityLocation=LocationTranslator.toFhirResource(facility);
-        Location fhirLabLocation=LocationTranslator.toFhirResource(laboratory);
-        Patient fhirPatient=PatientTranslator.toFhirResource(impiloPerson);
-        
-        Encounter encounter=EncounterTranslator.toFhirResource(laboratoryRequestOrder);
-        ServiceRequest serviceRequest=ServiceRequestTranslator.toFhirResource(laboratoryRequestOrder);
-        Task task=TaskTranslator.toFhirResource(laboratoryRequestOrder);
-        
-        
-        
+
+        Location fhirFacilityLocation = LocationTranslator.toFhirResource(facility);
+        Location fhirLabLocation = LocationTranslator.toFhirResource(laboratory);
+        Patient fhirPatient = PatientTranslator.toFhirResource(impiloPerson);
+
+        Encounter encounter = EncounterTranslator.toFhirResource(laboratoryRequestOrder);
+        ServiceRequest serviceRequest = ServiceRequestTranslator.toFhirResource(laboratoryRequestOrder);
+        Task task = TaskTranslator.toFhirResource(laboratoryRequestOrder);
+
         resources.add(fhirFacilityLocation);
         resources.add(fhirLabLocation);
         resources.add(fhirPatient);
-        
+
         resources.add(encounter);
         resources.add(serviceRequest);
         resources.add(task);
@@ -84,7 +83,7 @@ public class Orchestrator {
         client.transaction().withBundle(transactionBundle).execute();
 
     }
-    
+
     private static IGenericClient getClient(String baseUrl) {
         FhirContext ctx = FhirContext.forR4();
         return ctx.newRestfulGenericClient(baseUrl);

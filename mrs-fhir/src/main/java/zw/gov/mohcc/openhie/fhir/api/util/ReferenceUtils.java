@@ -14,7 +14,7 @@ public class ReferenceUtils {
     
     
     public static Reference getServiceRequestReference(LaboratoryRequestOrder laboratoryRequestOrder) {
-        return getEncounterReference(LabOrderUtils.getServiceRequestId(laboratoryRequestOrder));
+        return getServiceRequestReference(LabOrderUtils.getServiceRequestId(laboratoryRequestOrder));
     }
     
    

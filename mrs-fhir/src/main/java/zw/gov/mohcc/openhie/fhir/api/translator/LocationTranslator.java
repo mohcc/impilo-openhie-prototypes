@@ -36,7 +36,7 @@ public class LocationTranslator {
     public static Location toFhirResource(@Nonnull Laboratory laboratory) {
 
         Location fhirLocation = new Location();
-        fhirLocation.setId(laboratory.getLaboratoryId());
+        fhirLocation.setId("L"+laboratory.getLaboratoryId());
         fhirLocation.setName(laboratory.getName());
         fhirLocation.setDescription(null);
         fhirLocation.getMeta().setLastUpdated(null);
