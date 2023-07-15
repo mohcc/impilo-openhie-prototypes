@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class FakePhoneDao {
 
-    public static List<Phone> getPhones(Person person){
+    public static List<Phone> getPhones(Person person) {
         return Arrays.asList(new Phone(UUID.randomUUID().toString(), "077772345", person));
     }
 }

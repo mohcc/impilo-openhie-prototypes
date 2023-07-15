@@ -24,7 +24,8 @@ public class BaseAddressTranslator {
                 .orElseGet(() -> address.addExtension().setUrl(FhirConstants.IMPILO_FHIR_EXT_ADDRESS))
                 .addExtension(FhirConstants.IMPILO_FHIR_EXT_ADDRESS + "#" + extensionProperty, new StringType(value));
     }
+
     protected static void addAddressExtensions(Address address, zw.gov.mohcc.mrs.commons.data.reception.Address impiloAddress) {
-        addAddressExtension(address, "street",impiloAddress.getStreet());
+        addAddressExtension(address, "street", impiloAddress.getStreet());
     }
 }

@@ -1,4 +1,5 @@
 package zw.gov.mohcc.openhie.fhir.api.translator;
+
 import org.hl7.fhir.r4.model.Address;
 import zw.gov.mohcc.mrs.commons.data.reception.Person;
 
@@ -22,7 +23,7 @@ public class PersonAddressTranslator {
         fhirAddress.setPostalCode(null);
 
         // TODO is this the right mapping?
-        Boolean preferred=null;
+        Boolean preferred = null;
         if (preferred != null) {
             if (preferred) {
                 fhirAddress.setUse(Address.AddressUse.HOME);

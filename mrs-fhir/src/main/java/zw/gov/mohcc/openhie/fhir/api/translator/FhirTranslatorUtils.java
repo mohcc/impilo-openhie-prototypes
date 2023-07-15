@@ -7,4 +7,8 @@ public class FhirTranslatorUtils {
     public static Date getLastUpdated(Object impiloObject) {
         return null;
     }
+
+    public static String getSiteScopedId(Object objectId, String siteId) {
+        return objectId + "-" + siteId;
+    }
 }

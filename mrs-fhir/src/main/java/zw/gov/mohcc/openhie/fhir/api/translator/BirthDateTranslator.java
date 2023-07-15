@@ -7,7 +7,6 @@ import zw.gov.mohcc.mrs.commons.data.reception.Person;
 import javax.annotation.Nonnull;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
@@ -19,9 +18,9 @@ public class BirthDateTranslator {
             return null;
         }
 
-        Date personBirthDate=toDate(person.getBirthdate());
+        Date personBirthDate = toDate(person.getBirthdate());
 
-        Boolean birthdateEstimated=null;
+        Boolean birthdateEstimated = null;
 
         if (birthdateEstimated != null && birthdateEstimated) {
             DateType dateType = new DateType();
@@ -40,10 +39,10 @@ public class BirthDateTranslator {
         return new DateType(personBirthDate);
     }
 
-    private static Date toDate(LocalDate localDate){
+    private static Date toDate(LocalDate localDate) {
         try {
             return new SimpleDateFormat("yyyy-MM-dd").parse(localDate.toString());
-        }catch(ParseException ex){
+        } catch (ParseException ex) {
             throw new RuntimeException(ex);
         }
     }

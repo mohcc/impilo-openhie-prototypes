@@ -32,6 +32,12 @@
             <artifactId>mrs-data</artifactId>
             <version>1.2.31-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>zw.gov.mohcc.mrs</groupId>
+            <artifactId>mrs-core</artifactId>
+            <version>1.2.31-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
