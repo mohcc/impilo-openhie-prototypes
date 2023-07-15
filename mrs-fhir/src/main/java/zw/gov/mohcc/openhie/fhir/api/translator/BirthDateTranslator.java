@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
+import zw.gov.mohcc.openhie.fhir.api.util.DateTimeUtils;
 
 public class BirthDateTranslator {
 
@@ -18,7 +19,7 @@ public class BirthDateTranslator {
             return null;
         }
 
-        Date personBirthDate = toDate(person.getBirthdate());
+        Date personBirthDate = DateTimeUtils.convertToDate(person.getBirthdate());
 
         Boolean birthdateEstimated = null;
 
@@ -39,11 +40,4 @@ public class BirthDateTranslator {
         return new DateType(personBirthDate);
     }
 
-    private static Date toDate(LocalDate localDate) {
-        try {
-            return new SimpleDateFormat("yyyy-MM-dd").parse(localDate.toString());
-        } catch (ParseException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
 }

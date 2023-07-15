@@ -1,4 +1,4 @@
-package zw.gov.mohcc.openhie.prototype.invoker.client;
+package zw.gov.mohcc.openhie.prototype.invoker.xclient;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.client.api.IGenericClient;

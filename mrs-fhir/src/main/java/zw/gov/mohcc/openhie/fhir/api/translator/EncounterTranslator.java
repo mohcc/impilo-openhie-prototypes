@@ -5,8 +5,6 @@ import javax.annotation.Nonnull;
 import org.hl7.fhir.r4.model.Encounter;
 import org.hl7.fhir.r4.model.Encounter.EncounterLocationComponent;
 import org.hl7.fhir.r4.model.Reference;
-import zw.gov.mohcc.mrs.history.data.PersonInvestigation;
-import zw.gov.mohcc.mrs.laboratory.data.LaboratoryInvestigation;
 import zw.gov.mohcc.mrs.laboratory.data.LaboratoryRequestOrder;
 import zw.gov.mohcc.openhie.fhir.FhirConstants;
 import zw.gov.mohcc.openhie.fhir.api.util.LabOrderUtils;
@@ -14,7 +12,7 @@ import zw.gov.mohcc.openhie.fhir.api.util.ReferenceUtils;
 
 public class EncounterTranslator {
 
-    public Encounter toFhirResource(@Nonnull zw.gov.mohcc.mrs.consultation.data.Patient impiloPatient) {
+    public static Encounter toFhirResource(@Nonnull zw.gov.mohcc.mrs.consultation.data.Patient impiloPatient) {
 
         Encounter encounter = new Encounter();
         encounter.setId(impiloPatient.getPatientId());
@@ -38,7 +36,7 @@ public class EncounterTranslator {
         return encounter;
     }
 
-    public Encounter toFhirResource(@Nonnull LaboratoryRequestOrder laboratoryRequestOrder) {
+    public static Encounter toFhirResource(@Nonnull LaboratoryRequestOrder laboratoryRequestOrder) {
 
         Encounter encounter = new Encounter();
         encounter.setId(LabOrderUtils.getEncounterId(laboratoryRequestOrder));
