@@ -20,7 +20,7 @@ services:
     ports:
       - "8090:8080"
     volumes:
-      - ./hapi-config:/custom/config/hapi
+      - ./config:/custom/config/hapi
     environment:
       SPRING_CONFIG_LOCATION: 'file:///custom/config/hapi/application.yaml'
     networks:
