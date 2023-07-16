@@ -4,10 +4,10 @@ import java.util.Collections;
 import javax.annotation.Nonnull;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
+import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.ServiceRequest;
-import zw.gov.mohcc.mrs.history.data.PersonInvestigation;
-import zw.gov.mohcc.mrs.laboratory.data.LaboratoryInvestigation;
 import zw.gov.mohcc.mrs.laboratory.data.LaboratoryRequestOrder;
+import zw.gov.mohcc.openhie.fhir.FhirConstants;
 import zw.gov.mohcc.openhie.fhir.api.util.LabOrderUtils;
 import zw.gov.mohcc.openhie.fhir.api.util.ReferenceUtils;
 
@@ -15,10 +15,12 @@ public class ServiceRequestTranslator {
 
     public static ServiceRequest toFhirResource(@Nonnull LaboratoryRequestOrder laboratoryRequestOrder) {
         
+        String serviceRequestId=LabOrderUtils.getServiceRequestId(laboratoryRequestOrder);
+        
        
         ServiceRequest serviceRequest = new ServiceRequest();
 
-        serviceRequest.setId(LabOrderUtils.getServiceRequestId(laboratoryRequestOrder));
+        serviceRequest.setId(serviceRequestId);
 
         serviceRequest.setStatus(ServiceRequest.ServiceRequestStatus.ACTIVE);
 
@@ -36,6 +38,12 @@ public class ServiceRequestTranslator {
         //I can set the laboratory here:: TODO:: Confirm with DIGI
         serviceRequest.setLocationReference(Collections.singletonList(ReferenceUtils.getLabLocationReference(laboratoryRequestOrder)));
 
+        Identifier labRequestNumIdentifier=serviceRequest.addIdentifier();
+        labRequestNumIdentifier.setValue(laboratoryRequestOrder.getLaboratoryRequestNumber()).setId(serviceRequestId);
+        labRequestNumIdentifier.setSystem(FhirConstants.IMPILO_SYSTEM);
+        labRequestNumIdentifier.setType(new CodeableConcept(new Coding().setCode("LAB_REQUEST_NUM"))
+                    .setText("Laboratory Request Number"));
+        
         return serviceRequest;
     }
 }

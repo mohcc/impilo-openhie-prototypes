@@ -13,6 +13,10 @@ import javax.annotation.Nonnull;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Coding;
+import org.hl7.fhir.r4.model.Identifier;
+import zw.gov.mohcc.openhie.fhir.FhirConstants;
 
 public class PatientTranslator {
 
@@ -24,10 +28,18 @@ public class PatientTranslator {
         patient.setActive(true);
 
         List<Identification> identifications = FakeIdentificationDao.getIdentifications(impiloPerson);
+        
+       
 
         for (Identification identifier : identifications) {
             patient.addIdentifier(IdentifierTranslator.toFhirResource(identifier));
         }
+        
+        Identifier systemIdentifier= patient.addIdentifier();
+        systemIdentifier.setValue(impiloPerson.getPersonId()).setId(impiloPerson.getPersonId());
+        systemIdentifier.setSystem(FhirConstants.IMPILO_SYSTEM);
+        systemIdentifier.setType(new CodeableConcept(new Coding().setCode("IMPILO_ID"))
+                    .setText("Impilo internal ID"));
 
 
         patient.addName(PersonNameTranslator.toFhirResource(impiloPerson));
