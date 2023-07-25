@@ -15,7 +15,7 @@ services:
       - openhie
 
   hapi_server:
-    image: "hapiproject/hapi:latest"
+    image: "hapiproject/hapi:v6.6.0"
     container_name: hapi_server
     ports:
       - "8090:8080"

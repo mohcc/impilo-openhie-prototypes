@@ -14,6 +14,7 @@ public class LocationTranslator {
         fhirLocation.setId(facility.getFacilityId());
         fhirLocation.setName(facility.getName());
         fhirLocation.setDescription(null);
+       
 
         if (facility.getLatitude() != null && facility.getLatitude() >= 0.0d) {
             position.setLatitude(facility.getLatitude());

@@ -120,7 +120,8 @@ hapi:
     #    enforce_referential_integrity_on_write: false
     #    etag_support_enabled: true
     #    expunge_enabled: true
-    client_id_strategy: ALPHANUMERIC
+    # client_id_strategy: ALPHANUMERIC
+    client_id_strategy: ANY
     #    fhirpath_interceptor_enabled: false
     #    filter_search_enabled: true
     #    graphql_enabled: true

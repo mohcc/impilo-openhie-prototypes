@@ -8,10 +8,6 @@ import javax.annotation.Nonnull;
 public class GenderTranslator {
 
     public static Enumerations.AdministrativeGender toFhirResource(@Nonnull Gender gender) {
-        if (gender == null) {
-            return Enumerations.AdministrativeGender.NULL;
-        }
-
         switch (gender) {
             case MALE:
                 return Enumerations.AdministrativeGender.MALE;
