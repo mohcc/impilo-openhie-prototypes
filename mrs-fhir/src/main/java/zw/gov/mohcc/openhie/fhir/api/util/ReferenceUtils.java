@@ -63,6 +63,14 @@ public class ReferenceUtils {
     public static Reference getLocationReference(String facilityId) {
         return getReference(facilityId, FhirConstants.LOCATION, true);
     }
+    
+    public static Reference getObservationReference(String observationId) {
+        return getReference(observationId, FhirConstants.OBSERVATION, true);
+    }
+    
+    public static Reference getDiagnosticReportReference(String diagnosticReportId) {
+        return getReference(diagnosticReportId, FhirConstants.DIAGNOSTIC_REPORT, true);
+    }
 
     public static Reference getReference(String id, String type, boolean hasReference) {
         Reference reference = new Reference();

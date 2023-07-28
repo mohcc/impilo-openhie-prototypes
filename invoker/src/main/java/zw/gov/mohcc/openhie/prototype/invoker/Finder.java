@@ -16,7 +16,7 @@ import org.hl7.fhir.r4.model.Task.TaskStatus;
 
 public class Finder {
 
-    private static final IGenericClient client = getClient(Orchestrator.HAPI_FHIR_URL);
+    public static final IGenericClient client = getClient(Orchestrator.HAPI_FHIR_URL);
     private static final FhirContext fhirContext = FhirContext.forR4();
 
     public static enum ACTION {
@@ -45,7 +45,7 @@ public class Finder {
     public static void retrieveRequestedTasks() {
         Bundle taskBundle = client.search().forResource(Task.class)
                 .where(Task.STATUS.exactly().code(TaskStatus.REQUESTED.toCode()))
-                .include(Task.INCLUDE_SUBJECT)
+                /*.include(Task.INCLUDE_SUBJECT)*/
                 .returnBundle(Bundle.class)
                 .execute();
 
@@ -87,6 +87,11 @@ public class Finder {
     public static void getSpecimenById(String specimenId) {
         Specimen specimen = (Specimen) getResourceById(specimenId, Specimen.class);
         printFhirResource(specimen);
+    }
+    
+    public static Task getTaskById(String taskId) {
+        return (Task) getResourceById(taskId, Task.class);
+        
     }
 
     public static IBaseResource getResourceById(String id, Class<? extends IBaseResource> theClass) {

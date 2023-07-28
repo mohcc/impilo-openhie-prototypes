@@ -36,7 +36,7 @@ import zw.gov.mohcc.openhie.fhir.api.translator.TaskTranslator;
  */
 public class Orchestrator {
 
-    public static final String HAPI_FHIR_URL = "http://localhost:8090/fhir";
+    public static final String HAPI_FHIR_URL = "http://197.221.242.150:10343/lims-fhir";
     public static final String OPENHIM_FHIR_URL = "http://localhost:5001/fhir/";
 
     private static final List<Facility> FACILITIES = getImpiloFacilities();
@@ -84,7 +84,7 @@ public class Orchestrator {
 
     }
 
-    private static IGenericClient getClient(String baseUrl) {
+    public static IGenericClient getClient(String baseUrl) {
         FhirContext ctx = FhirContext.forR4();
         return ctx.newRestfulGenericClient(baseUrl);
     }
@@ -196,7 +196,7 @@ public class Orchestrator {
         return impiloLaboratory;
     }
 
-    private static String getRequestUrl(Resource resource) {
+    public static String getRequestUrl(Resource resource) {
         return resource.fhirType() + "/" + resource.getIdElement().getIdPart();
     }
 
