@@ -63,6 +63,7 @@ public class ResultIssuer {
         DiagnosticReport diagnosticReport = new DiagnosticReport();
         diagnosticReport.setId(UUID.randomUUID().toString());
         diagnosticReport.setCode(new CodeableConcept(new Coding("http://loinc.org", "22748-8", "")));
+        diagnosticReport.setSubject(task.getFor());
         return diagnosticReport;
     }
 
