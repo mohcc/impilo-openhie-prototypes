@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
-import org.aspectj.weaver.Dump;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
@@ -19,11 +18,10 @@ import static zw.gov.mohcc.openhie.prototype.invoker.Finder.client;
 import static zw.gov.mohcc.openhie.prototype.invoker.Orchestrator.getRequestUrl;
 
 public class ResultIssuer {
-    
 
     public static void main(String[] args) {
-        
-        String taskId="";
+
+        String taskId = "4d7a41e8-f602-46ee-bcce-f7ec807ecbcd";
 
         Task task = Finder.getTaskById(taskId);
 
@@ -31,9 +29,9 @@ public class ResultIssuer {
     }
 
     public static void issueResult(Task task) {
-        
-        List<Resource> fhirResources=new ArrayList<>();
-        
+
+        List<Resource> fhirResources = new ArrayList<>();
+
         task.setStatus(Task.TaskStatus.COMPLETED);
         Task.TaskOutputComponent output = new Task.TaskOutputComponent();
 
@@ -48,15 +46,13 @@ public class ResultIssuer {
         String observationId = observation.getId();
         Reference observationReference = ReferenceUtils.getObservationReference(observationId);
         diagnosticReport.setResult(Collections.singletonList(observationReference));
-        
+
         fhirResources.add(observation);
         fhirResources.add(diagnosticReport);
         fhirResources.add(task);
-        
-       
+
         saveFhirResources(fhirResources);
-        
-        
+
     }
 
     public static DiagnosticReport getDiagnosticReport(Task task) {
@@ -77,9 +73,9 @@ public class ResultIssuer {
         observation.setValue(new Quantity().setValue(55).setUnit("UI/L"));
         return observation;
     }
-    
-    public static void saveFhirResources(List<Resource> resources){
-        
+
+    public static void saveFhirResources(List<Resource> resources) {
+
         Bundle transactionBundle = new Bundle();
         transactionBundle.setType(Bundle.BundleType.TRANSACTION);
         for (Resource resource : resources) {

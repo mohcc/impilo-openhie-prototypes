@@ -29,22 +29,25 @@ import zw.gov.mohcc.openhie.fhir.api.translator.LocationTranslator;
 import zw.gov.mohcc.openhie.fhir.api.translator.PatientTranslator;
 import zw.gov.mohcc.openhie.fhir.api.translator.ServiceRequestTranslator;
 import zw.gov.mohcc.openhie.fhir.api.translator.TaskTranslator;
+import static zw.gov.mohcc.openhie.prototype.invoker.Finder.client;
 
 /**
  *
  * @author charles
  */
 public class Orchestrator {
+    
+    
+    public static final String LOCAL_HAPI_FHIR_URL = "http://localhost:8090/fhir/";
 
-    public static final String HAPI_FHIR_URL = "http://197.221.242.150:10343/lims-fhir";
+    public static final String HAPI_FHIR_URL = "http://197.221.242.150:10343/lims-fhir/";
     public static final String OPENHIM_FHIR_URL = "http://localhost:5001/fhir/";
 
     private static final List<Facility> FACILITIES = getImpiloFacilities();
     private static final List<Laboratory> LABORATORIES = getImpiloLaboraties();
 
     public static void main(String[] args) {
-        boolean direct = false;
-        IGenericClient client = getClient(direct ? HAPI_FHIR_URL : OPENHIM_FHIR_URL);
+        
         zw.gov.mohcc.mrs.commons.data.reception.Person impiloPerson = getImpiloPerson();
 
         Laboratory laboratory = getImpiloLaboratory();

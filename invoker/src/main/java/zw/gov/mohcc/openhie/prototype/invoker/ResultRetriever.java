@@ -2,15 +2,30 @@ package zw.gov.mohcc.openhie.prototype.invoker;
 
 import ca.uhn.fhir.rest.gclient.TokenClientParam;
 import java.util.List;
+import org.hl7.fhir.r4.model.BooleanType;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.DiagnosticReport;
+import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.Observation;
+import org.hl7.fhir.r4.model.Period;
+import org.hl7.fhir.r4.model.Quantity;
+import org.hl7.fhir.r4.model.Ratio;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.ResourceType;
+import org.hl7.fhir.r4.model.StringType;
 import org.hl7.fhir.r4.model.Task;
 import static zw.gov.mohcc.openhie.prototype.invoker.Finder.client;
 
 public class ResultRetriever {
+
+    public static void main(String[] args) {
+
+        String taskId = "";
+
+        Task task = Finder.getTaskById(taskId);
+
+        retrieveResult(task);
+    }
 
     public static void retrieveResult(Task task) {
 
@@ -34,8 +49,21 @@ public class ResultRetriever {
                 if (entry.hasResource()) {
                     if (ResourceType.Observation.equals(entry.getResource().getResourceType())) {
                         Observation observation = (Observation) entry.getResource();
-                        System.out.println("Str Result=" + observation.getValue().toString());
-                        System.out.println("Result=" + observation.getValueQuantity().getValue());
+                        if (observation.getValue() instanceof Quantity) {
+                            System.out.println("Quantity Result=" + observation.getValueQuantity().getValue());
+                        } else if (observation.getValue() instanceof StringType) {
+                            System.out.println("String Result=" + observation.getValueStringType().getValue());
+                        } else if (observation.getValue() instanceof IntegerType) {
+                            System.out.println("Integer Result=" + observation.getValueIntegerType().getValue());
+                        } else if (observation.getValue() instanceof BooleanType) {
+                            System.out.println("Boolean Result=" + observation.getValueBooleanType().getValue());
+                        } else if (observation.getValue() instanceof Period) {
+                            System.out.println("Start=" + observation.getValuePeriod().getStart());
+                            System.out.println("End=" + observation.getValuePeriod().getEnd());
+                        } else if (observation.getValue() instanceof Ratio) {
+                            System.out.println("Denominator=" + observation.getValueRatio().getNumerator().getValue());
+                            System.out.println("Denominator=" + observation.getValueRatio().getDenominator().getValue());
+                        }
 
                     }
                 }

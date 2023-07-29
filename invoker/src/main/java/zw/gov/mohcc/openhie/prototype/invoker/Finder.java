@@ -16,20 +16,23 @@ import org.hl7.fhir.r4.model.Task.TaskStatus;
 
 public class Finder {
 
-    public static final IGenericClient client = getClient(Orchestrator.HAPI_FHIR_URL);
+    public static final IGenericClient client = getClient(Orchestrator.LOCAL_HAPI_FHIR_URL);
     private static final FhirContext fhirContext = FhirContext.forR4();
 
     public static enum ACTION {
         RETRIEVE_UPDATE_TASKS,
         RETRIEVE_REQUESTED_TASKS,
-        GET_SPECIMEN
+        GET_SPECIMEN,
+        GET_TASK
     }
 
     public static void main(String[] args) {
 
-        ACTION action = ACTION.RETRIEVE_REQUESTED_TASKS;
+        ACTION action = ACTION.GET_TASK;
 
         switch (action) {
+            case GET_TASK:
+                getTask();
             case RETRIEVE_REQUESTED_TASKS:
                 retrieveRequestedTasks();
                 break;
@@ -83,6 +86,11 @@ public class Finder {
         String specimenId = "eedaf77b-f417-4455-b10d-ef18683daf61";
         getSpecimenById(specimenId);
     }
+    
+    public static void getTask(){
+        String taskId="4d7a41e8-f602-46ee-bcce-f7ec807ecbcd";
+        printFhirResource(getTaskById(taskId));
+    }
 
     public static void getSpecimenById(String specimenId) {
         Specimen specimen = (Specimen) getResourceById(specimenId, Specimen.class);
@@ -94,10 +102,9 @@ public class Finder {
         
     }
 
-    public static IBaseResource getResourceById(String id, Class<? extends IBaseResource> theClass) {
-        String specimenId = "eedaf77b-f417-4455-b10d-ef18683daf61";
+    public static IBaseResource getResourceById(String resourceId, Class<? extends IBaseResource> theClass) {
         Bundle specimenBundle = client.search().forResource(theClass)
-                .where(new TokenClientParam("_id").exactly().code(specimenId))
+                .where(new TokenClientParam("_id").exactly().code(resourceId))
                 .returnBundle(Bundle.class).execute();
         return specimenBundle.getEntryFirstRep().getResource();
     }
