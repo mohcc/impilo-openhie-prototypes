@@ -62,7 +62,8 @@ public class ResultRetriever {
                             System.out.println("End=" + observation.getValuePeriod().getEnd());
                         } else if (observation.getValue() instanceof Ratio) {
                             System.out.println("Denominator=" + observation.getValueRatio().getNumerator().getValue());
-                            System.out.println("Denominator=" + observation.getValueRatio().getDenominator().getValue());
+                            System.out
+                                    .println("Denominator=" + observation.getValueRatio().getDenominator().getValue());
                         }
 
                     }

@@ -3,6 +3,7 @@ package zw.gov.mohcc.openhie.prototype.invoker;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.CodeableConcept;
@@ -21,7 +22,7 @@ public class ResultIssuer {
 
     public static void main(String[] args) {
 
-        String taskId = "4d7a41e8-f602-46ee-bcce-f7ec807ecbcd";
+        String taskId = "7b5a8bc7-807c-4129-8717-0fcb13967361";
 
         Task task = Finder.getTaskById(taskId);
 
@@ -70,7 +71,7 @@ public class ResultIssuer {
         observation.setSubject(task.getFor());
         //Add Test Analysis Code
         observation.setCode(new CodeableConcept(new Coding("http://loinc.org", "22748-8", "")));
-        observation.setValue(new Quantity().setValue(55).setUnit("UI/L"));
+        observation.setValue(new Quantity().setValue(Math.random()*500).setUnit("UI/L"));
         return observation;
     }
 
