@@ -7,18 +7,16 @@ import javax.annotation.Nonnull;
 
 public class PersonNameTranslator {
 
+    private PersonNameTranslator(){
+        
+    }
+
     public static HumanName toFhirResource(@Nonnull Person person) {
 
         HumanName humanName = new HumanName();
         humanName.setId(person.getPersonId());
         if (person.getFirstname() != null) {
             humanName.addGiven(person.getFirstname());
-        }
-
-        String middleName = null;
-
-        if (middleName != null) {
-            humanName.addGiven(middleName);
         }
 
         if (person.getLastname() != null) {

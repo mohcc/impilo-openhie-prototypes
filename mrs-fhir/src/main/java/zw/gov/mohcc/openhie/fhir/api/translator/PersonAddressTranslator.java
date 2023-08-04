@@ -8,6 +8,11 @@ import javax.annotation.Nonnull;
 public class PersonAddressTranslator {
 
 
+    private PersonAddressTranslator(){
+        
+    }
+
+
     public static Address toFhirResource(@Nonnull Person person) {
 
         if (person.getAddress() == null) {
@@ -22,15 +27,8 @@ public class PersonAddressTranslator {
         fhirAddress.setDistrict(null);
         fhirAddress.setPostalCode(null);
 
-        // TODO is this the right mapping?
-        Boolean preferred = null;
-        if (preferred != null) {
-            if (preferred) {
-                fhirAddress.setUse(Address.AddressUse.HOME);
-            } else {
-                fhirAddress.setUse(Address.AddressUse.OLD);
-            }
-        }
+      
+        fhirAddress.setUse(Address.AddressUse.OLD);
 
         BaseAddressTranslator.addAddressExtensions(fhirAddress, person.getAddress());
 
