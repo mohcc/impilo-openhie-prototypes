@@ -3,7 +3,6 @@ package zw.gov.mohcc.openhie.prototype.invoker;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.CodeableConcept;
@@ -19,6 +18,10 @@ import static zw.gov.mohcc.openhie.prototype.invoker.Finder.client;
 import static zw.gov.mohcc.openhie.prototype.invoker.Orchestrator.getRequestUrl;
 
 public class ResultIssuer {
+
+    private ResultIssuer(){
+        
+    }
 
     public static void main(String[] args) {
 

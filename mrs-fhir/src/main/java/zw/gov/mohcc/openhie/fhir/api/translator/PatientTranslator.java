@@ -2,7 +2,6 @@ package zw.gov.mohcc.openhie.fhir.api.translator;
 
 import org.hl7.fhir.r4.model.BooleanType;
 import org.hl7.fhir.r4.model.ContactPoint;
-import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Patient;
 import zw.gov.mohcc.mrs.commons.data.reception.Identification;
 import zw.gov.mohcc.mrs.commons.data.reception.Person;
@@ -10,7 +9,6 @@ import zw.gov.mohcc.openhie.fhir.api.fakedao.FakeIdentificationDao;
 import zw.gov.mohcc.openhie.fhir.api.fakedao.FakePhoneDao;
 
 import javax.annotation.Nonnull;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.hl7.fhir.r4.model.CodeableConcept;
@@ -19,6 +17,9 @@ import org.hl7.fhir.r4.model.Identifier;
 import zw.gov.mohcc.openhie.fhir.FhirConstants;
 
 public class PatientTranslator {
+
+    private PatientTranslator(){
+    }
 
 
     public static Patient toFhirResource(zw.gov.mohcc.mrs.commons.data.reception.Person impiloPerson) {
@@ -50,19 +51,9 @@ public class PatientTranslator {
 
         patient.setBirthDateElement(BirthDateTranslator.toFhirResource(impiloPerson));
 
-        boolean dead = false;
-        Date deathDate = null;
-
-
-        if (dead) {
-            if (deathDate != null) {
-                patient.setDeceased(new DateTimeType(deathDate));
-            } else {
-                patient.setDeceased(new BooleanType(true));
-            }
-        } else {
-            patient.setDeceased(new BooleanType(false));
-        }
+        
+        patient.setDeceased(new BooleanType(false));
+        
 
 
         patient.addAddress(PersonAddressTranslator.toFhirResource(impiloPerson));

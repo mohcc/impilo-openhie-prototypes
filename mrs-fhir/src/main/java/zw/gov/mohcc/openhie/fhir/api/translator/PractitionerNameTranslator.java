@@ -6,6 +6,10 @@ import static zw.gov.mohcc.openhie.fhir.api.translator.FhirTranslatorUtils.getSi
 
 
 public class PractitionerNameTranslator {
+
+    private PractitionerNameTranslator(){
+        
+    }
     
     public static final String  SITE_ID="ZW00064";
     
@@ -15,12 +19,6 @@ public class PractitionerNameTranslator {
         humanName.setId(getSiteScopedId(user.getId(), SITE_ID));
         if (user.getFirstName() != null) {
             humanName.addGiven(user.getFirstName());
-        }
-
-        String middleName = null;
-
-        if (middleName != null) {
-            humanName.addGiven(middleName);
         }
 
         if (user.getLastName() != null) {

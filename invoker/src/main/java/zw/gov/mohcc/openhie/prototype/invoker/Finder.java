@@ -6,6 +6,9 @@ import ca.uhn.fhir.rest.api.SortSpec;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.rest.gclient.TokenClientParam;
 import java.util.Iterator;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Patient;
@@ -19,7 +22,13 @@ public class Finder {
     public static final IGenericClient client = getClient(Orchestrator.LOCAL_HAPI_FHIR_URL);
     private static final FhirContext fhirContext = FhirContext.forR4();
 
-    public static enum ACTION {
+    private static Log log = LogFactory.getLog(Finder.class);
+
+    private Finder(){
+        
+    }
+
+    public enum ACTION {
         RETRIEVE_UPDATE_TASKS,
         RETRIEVE_REQUESTED_TASKS,
         GET_SPECIMEN,
@@ -33,6 +42,7 @@ public class Finder {
         switch (action) {
             case GET_TASK:
                 getTask();
+                break;
             case RETRIEVE_REQUESTED_TASKS:
                 retrieveRequestedTasks();
                 break;
@@ -110,15 +120,15 @@ public class Finder {
     }
 
     public static void printTasks(Bundle taskBundle) {
-        for (Iterator resources = taskBundle.getEntry().iterator(); resources.hasNext();) {
-            Resource resource = ((Bundle.BundleEntryComponent) resources.next()).getResource();
+        for (Iterator<Bundle.BundleEntryComponent> resources = taskBundle.getEntry().iterator(); resources.hasNext();) {
+            Resource resource = resources.next().getResource();
             if (resource instanceof Task) {
                 Task fhirTask = (Task) resource;
-                System.out.println("For.ResourceType=" + fhirTask.getFor().getReferenceElement().getResourceType());
-                System.out.println("For.ResourceId=" + fhirTask.getFor().getReferenceElement().getIdPart());
+                log.info("For.ResourceType=" + fhirTask.getFor().getReferenceElement().getResourceType());
+                log.info("For.ResourceId="+ fhirTask.getFor().getReferenceElement().getIdPart());
                 printFhirResource(fhirTask);
             }else if(resource instanceof Patient){
-                System.out.println("Printing Patient");
+                log.info("Printing Patient");
                 Patient fhirPatient=(Patient)resource;
                 printFhirResource(fhirPatient);
             }
@@ -127,7 +137,7 @@ public class Finder {
     }
 
     public static void printFhirResource(IBaseResource resource) {
-        System.out.println(fhirContext.newJsonParser().setPrettyPrint(true).encodeResourceToString(resource));
+       log.info(fhirContext.newJsonParser().setPrettyPrint(true).encodeResourceToString(resource));
     }
 
     private static IGenericClient getClient(String baseUrl) {
